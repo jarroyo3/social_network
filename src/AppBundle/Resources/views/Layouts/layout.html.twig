@@ -7,9 +7,10 @@
 
     </title>
     {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('assets/bootstrap/.min.css') }}" type="text/css">
-      <link rel="stylesheet" href="{{ asset('assets/bootstrap/.theme.css') }}" type="text/css">
+      <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" type="text/css">
+      <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.theme.css') }}" type="text/css">
       <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.cosmo.min.css') }}" type="text/css">
+      <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" type="text/css">
     {% endblock %}
   </head>
   <body>
@@ -25,30 +26,69 @@
             </button>
             <a href="{{ path('app_homepage') }}" class="navbar-brand"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>&nbsp;Network Social</a>
           </div>
-          <div class="collapse navbar-collapse" id"bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li><a href="{{path('login')}}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Entrar</a></li>
-              <li><a href="{{path('login')}}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Registro</a></li>
-            </ul>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% if app.user == null %}
+              <ul class="nav navbar-nav">
+                <li><a href="{{path('login')}}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Entrar</a></li>
+                <li><a href="{{path('register')}}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Registro</a></li>
+              </ul>
+            {% endif %}
+            {% if app.user != null %}
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar">  
+                      {% if app.user == null %}
+                        <img src="{{ asset('images/default.png')}}">
+                      {% else %}
+                        <img src="{{ asset('uploads/users/'~app.user.image)}}">
+                      {% endif %}
+                    </div>
+                    {{app.user.name}} {{app.user.surname}}
+                      <span class="caret"> </span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Mis cuenta</a></li>
+                    <li><a href="{{ path('user_edit') }}">Mis datos personales</a></li>
+                    <li role="separator" class="divider"><a>Mis datos personales</a></li>
+                    <li><a href="logout">Cerrar sesión</a></li>
+                  </ul>    
+                </li>
+              </ul>
+            {% endif %}
           </div>
         </div>
       </nav>
     </header>
 
     <section id="content">
-      {% block content %}
-        Content Default
-      {% endblock %}
-    </section>
-
-    <footer class="col-lg-12">
-      <div class="container">
-        <p class="text-muted">Desarrollado por Jorge Arroyo</p>
+    <div class="container">
+      <div class="col-lg-11">
+        {% for state in app.session.flashbag().get('status') %}
+          <div class="alert alert-success">
+            {{ state }}
+          </div>
+        {% endfor %}
       </div>
-    </footer>
+      <div class="clearfix"></div>
+      <section>
+        {% block content %}
+          Content Default
+        {% endblock %}
+      </section>
 
-    {% block javascripts %}
-      <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    {% endblock %}
+      <footer class="col-lg-12">
+        <div class="container">
+          <p class="text-muted">Desarrollado por Jorge Arroyo</p>
+        </div>
+      </footer>
+
+      {% block javascripts %}
+        <script>
+          var URL = "{{ app.request.getSchemeAndHttpHost() }}";
+        </script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+      {% endblock %}
   </body>
 </html>

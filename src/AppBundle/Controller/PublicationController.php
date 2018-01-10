@@ -10,6 +10,6 @@ class PublicationController extends Controller
 {
   public function indexAction(Request $request)
   {
-
+      return $this->render('AppBundle:Publication:home.html.twig');
   }
 }

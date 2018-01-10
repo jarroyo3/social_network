@@ -1,0 +1,37 @@
+/*
+    Estilos generales
+*/
+body {
+    background: #eee;
+}
+
+/*
+    Registro
+*/
+.box-form {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding:0px 20px 20px 20px;
+    margin: 0 auto;
+    float: none;
+}
+
+.box-form input {
+    margin-bottom: 10px;
+}
+
+/*** Header  ***/
+.navbar-collapse .avatar {
+    border-radius: 25px;
+    background-color: #ffffff;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    float: left;
+    margin: -7px 12px 0 0;
+
+}
+
+.navbar-collapse .avatar img{
+    width: 100%;    
+}

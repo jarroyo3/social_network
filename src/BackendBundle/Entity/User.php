@@ -2,10 +2,12 @@
 
 namespace BackendBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -282,5 +284,29 @@ class User
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getUserName()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER', 'ROLE_ADMIN'];
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
