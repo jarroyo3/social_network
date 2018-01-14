@@ -77,7 +77,7 @@ class UserController extends Controller
                     }
 
                 }else {
-                    $status = sprintf("El usuario o contraseña ya existen");
+                    $status = sprintf("El correo electrónico o nick ya existen");
                 }
 
             } else {
@@ -129,9 +129,11 @@ class UserController extends Controller
                     ->setParameter('nick', $form->get('nick')->getData());
                 
                 $userIsset = $query->getResult();
-                $userIsset = $userIsset[0];
                 // crea el usuario si count = 0
-                $check = ($user->getEmail() == $userIsset->getEmail()) && ($user->getNick() == $userIsset->getNick());
+                $check = count($userIsset[0]) == 0 || 
+                    ($user->getEmail() == $userIsset[0]->getEmail()) && 
+                    ($user->getNick() == $userIsset[0]->getNick());
+
                 if ($check) {
                     
                     // uploading file...
@@ -168,6 +170,51 @@ class UserController extends Controller
 
         return $this->render('AppBundle:User:edit_user.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    public function usersAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = 'SELECT u FROM BackendBundle:User u ORDER BY u.id';
+        $query = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
+        
+        return $this->render('AppBundle:User:users.html.twig', [
+            'pagination' => $pagination
+        ]);
+    }
+
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $search = $request->query->get('search', null);
+
+        if (null == $search) {
+            return $this->redirect($this->generateURL('home_publications'));
+        }
+
+        $dql = 'SELECT u FROM BackendBundle:User u 
+            WHERE u.name LIKE :search 
+            OR u.surname LIKE :search 
+            OR u.nick LIKE :search ORDER BY u.id';
+        $query = $em->createQuery($dql)->setParameter('search', "%$search%");
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
+        
+        return $this->render('AppBundle:User:users.html.twig', [
+            'pagination' => $pagination
         ]);
     }
 }

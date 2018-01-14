@@ -29,9 +29,37 @@ body {
     overflow: hidden;
     float: left;
     margin: -7px 12px 0 0;
-
+    
 }
 
 .navbar-collapse .avatar img{
     width: 100%;    
+}
+
+/* GENTE */
+
+.box-default {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding:0px 20px 20px 20px;
+    margin: 0 auto;
+}
+
+.user-item .avatar {
+    background-color: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+.user-item .avatar img {
+    text-align: center;
+    height: 100%;
+}
+
+.user-item .user-item-content {
+    padding: 10px;
+    margin-left: 10%;
 }
