@@ -45,7 +45,7 @@ body {
     margin: 0 auto;
 }
 
-.user-item .avatar {
+.user-item .avatar, #user-card .avatar, .publication-item .avatar {
     background-color: #eee;
     border-radius: 500px;
     width: 75px;
@@ -54,12 +54,202 @@ body {
     float: left;
 }
 
-.user-item .avatar img {
+.user-item .avatar img, #user-card .avatar img, .publication-item .avatar img {
     text-align: center;
     height: 100%;
 }
 
-.user-item .user-item-content {
+.user-item .user-item-content, .publication-item .publication-item-content {
     padding: 10px;
-    margin-left: 10%;
+    margin-left: 85px;
+}
+
+.user_link {
+    color: #000;
+}
+
+/*** HOME ***/
+
+#timeline {
+    margin-right: 20px;
+    min-height: 750px;
+    padding-bottom: 20px;
+}
+
+#user-card {
+    margin-bottom: 20px;
+}
+
+#user-card, #new-publication {
+    margin-left: 20px;
+    padding: 10px;
+}
+
+#user-card .avatar img.default {
+    opacity: 0.5;
+
+}
+
+#user-card .name-surname {
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#user-card .name-surname a {
+    color: #000;
+}
+
+#user-card .name-surname a:hover {
+   text-decoration: none;
+}
+
+#user-card .nickname {
+    opacity: 0.7;
+}
+
+#user-card .following-data {
+    width: 25%;
+    float: left;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+#user-card .following-data a{
+    color: #444;
+}
+
+#user-card .following-data a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+#user-card .following-data .label-stat{
+    display: block;
+}
+
+#user-card .following-data .number-stat{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#new-publication input, #new-publication textarea {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.publication-name-link{
+    font-weight: bold;
+    color: #000;
+}
+
+.publication-name-link:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.publication-date {
+    color: gray;
+}
+
+.pub-image {
+    display: none;
+    transition: all 300ms;
+}
+
+.pub-image img {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.publication-item .glyphicon {
+    margin-right: 7px;
+    cursor: pointer;
+    color: #444;
+}
+
+/***** ME GUSTA ******/
+.like {
+    font-size: 25px;
+    margin-top: -45px;
+}
+
+.like .btn-like:hover {
+    color: red;
+    cursor: poiner;
+}
+
+.like .active {
+    color:red;
+}
+
+/***** PERFILES *******/
+
+.profile-box {
+    padding: 20px;
+    margin: 0 auto;
+    float: none;
+}
+
+.profile-box > .avatar {
+    background: #eee;
+    border-radius: 700px;
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+}
+
+.profile-box > .avatar  img{ 
+    height: 100%;
+    text-align: center;
+}
+
+.profile-box .name-surname {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-box .bio {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-box #user_stats {
+    margin: 0 auto 20px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 60%;
+    text-align: center;
+    
+}
+
+.profile-box #user_stats a {
+    color: #444;
+    display: block;
+    float: left;
+}
+
+.profile-box #user_stats a:hover {
+    text-decoration: none;
+}
+
+.profile-box #user_stats .label-stat {
+    display: block;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.profile-box #user_stats .number-stat{
+    font-weight: bold;
 }
