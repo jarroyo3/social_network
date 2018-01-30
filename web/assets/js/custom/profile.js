@@ -26,6 +26,8 @@ $(document).ready(function () {
         ProfileService.showPublicationImage();
         ProfileService.deletePublication();
         ProfileService.likeUnlike();
+        FollowService.followUser();
+        FollowService.unfollowUser();
     });
 
     ias.on('rendered', function (event) {
@@ -33,6 +35,8 @@ $(document).ready(function () {
         ProfileService.showPublicationImage();
         ProfileService.deletePublication();
         ProfileService.likeUnlike();
+        FollowService.followUser();
+        FollowService.unfollowUser();
     });
 
 });

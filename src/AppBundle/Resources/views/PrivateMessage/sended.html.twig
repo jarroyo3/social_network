@@ -1,0 +1,66 @@
+{% extends 'AppBundle:Layouts:layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-lg-12 box-default box-notifications">
+            <h4 class="box-header"> Mensajes privados recibidos</h4>
+            <div class="col-lg-6">
+                
+                <a href="{{path('private_message_index')}}" class="btn btn-warning">Ver mensajes recibidos</a>
+            </div>
+            <div class="col-lg-6">
+                <h4 class="box-header"> Mensajes privados enviados</h4>
+                <hr>
+                <div class="block-content">
+                {% for message in pagination %}
+                    <div class="col-lg-12 message-item">
+                        <div class="avatar">
+                            {% if message.emitter.image == null %}
+                                <img src="{{ asset('assets/images/default.png')}}">
+                            {% else %}
+                                <img src="{{ asset('uploads/users/'~message.emitter.image)}}">
+                            {% endif %}
+                        </div>
+                        <div class="message-item-content">
+                            <p>
+                                <a class="message-name-link" href="{{ path('user_profile', {'nickname': message.emitter.nick}) }}">
+                                    {{message.emitter.name}} {{message.emitter.surname}}
+                                </a>
+                                -
+                                Para <a class="message-name-link" href="{{ path('user_profile', {'nickname': message.receiver.nick}) }}"> 
+                                    {{message.receiver.nick}}
+                                 </a>
+                                <span class="message-date">{{message.createdAt|long_time}}</span>
+                            </p>
+                            
+                            {{message.message}}
+
+                            {% if (message.file is defined) and (message.file is not null)  %}
+                                <a href="{{asset('uploads/messages/documents/'~message.file)}}"
+                                    class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="blank">
+                                </a>
+                            {% endif %}
+
+                            {% if (message.image is defined) and (message.image is not null)  %}
+                                <a href="{{asset('uploads/messages/images/'~message.image)}}"
+                                    class="btn-doc glyphicon glyphicon-picture" aria-hidden="true" target="blank">
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr>
+                    </div>
+                {% endfor %}
+                <div class="navigation">
+                    {{knp_pagination_render(pagination)}}
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+{% endblock %}

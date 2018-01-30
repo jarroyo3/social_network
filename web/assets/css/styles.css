@@ -45,7 +45,7 @@ body {
     margin: 0 auto;
 }
 
-.user-item .avatar, #user-card .avatar, .publication-item .avatar {
+.user-item .avatar, #user-card .avatar, .publication-item .avatar,.message-item .avatar  {
     background-color: #eee;
     border-radius: 500px;
     width: 75px;
@@ -54,12 +54,12 @@ body {
     float: left;
 }
 
-.user-item .avatar img, #user-card .avatar img, .publication-item .avatar img {
+.user-item .avatar img, #user-card .avatar img, .publication-item .avatar img, .message-item .avatar img {
     text-align: center;
     height: 100%;
 }
 
-.user-item .user-item-content, .publication-item .publication-item-content {
+.user-item .user-item-content, .publication-item .publication-item-content, .message-item .message-item-content {
     padding: 10px;
     margin-left: 85px;
 }
@@ -252,4 +252,13 @@ body {
 
 .profile-box #user_stats .number-stat{
     font-weight: bold;
+}
+
+
+.box-private-message input, .box-private-message select, .box-private-message textarea{
+    margin-bottom: 10px;
+}
+
+.box-default.profile-box .name-surname .buttons-following{
+    margin-top: 20px;
 }

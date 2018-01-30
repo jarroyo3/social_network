@@ -28,3 +28,26 @@ security:
             logout:
                 path: logout
                 target: /
+    
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/my-data, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/people, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/search, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/user/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/publication/remove, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/private-message, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/private-sended, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/private-message/notification/get, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/notifications, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/notifications/get, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/like, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/unlike, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/likes/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/publication, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/follow, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/unfollow, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/following/, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/followed/, roles: [ROLE_ADMIN, ROLE_USER] }

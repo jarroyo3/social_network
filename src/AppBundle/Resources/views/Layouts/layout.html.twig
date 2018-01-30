@@ -48,8 +48,22 @@
 
             {% if app.user != null %}
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{path('login')}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Mensajes privados</a></li>
-                <li><a href="{{path('register')}}"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;Notificaciones</a></li>
+                <li>
+                  <a href="{{path('private_message_index')}}">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                      &nbsp;Mensajes privados
+                      <span class="label label-notifications-msg label-success"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{path('notifications_page')}}">
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                      &nbsp;Notificaciones
+                    <span class="label label-notifications label-success">
+                    
+                    </span>
+                  </a>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar">  
@@ -63,9 +77,9 @@
                       <span class="caret"> </span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Mis cuenta</a></li>
+                    <li><a class="publication-name-link" href="{{ path('user_profile', {'nickname': app.user.nick}) }}">Mis cuenta</a></li>
                     <li><a href="{{ path('user_edit') }}">Mis datos personales</a></li>
-                    <li role="separator" class="divider"><a>Mis datos personales</a></li>
+                    <li role="separator" class="divider"><a>Mi datos personales</a></li>
                     <li><a href="logout">Cerrar sesión</a></li>
                   </ul>    
                 </li>
@@ -105,6 +119,8 @@
         <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/services/follow.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/custom/common.js') }}"></script>
       {% endblock %}
   </body>
 </html>

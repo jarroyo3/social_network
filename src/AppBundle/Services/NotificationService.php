@@ -34,4 +34,21 @@ class NotificationService
 
         return $status;
     }
+
+    public function read($user)
+    {
+        $em = $this->manager;
+        $notificationRepo = $em->getRepository('BackendBundle:Notification');
+
+        $notifications = $notificationRepo->findBy([
+            'user' => $user
+        ]);
+
+        foreach ($notifications as $notification) {
+            $notification->setReaded(true);
+            $em->persist($notification);
+        }
+        
+        return (boolean)$em->flush();
+    }
 }
